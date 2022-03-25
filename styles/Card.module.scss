@@ -25,20 +25,37 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 50%;
+  height: 70%;
 }
 
 .image{
-  width: 55%;
+  width: 35%;
+  min-width: auto;
 }
 
 .info{
   width: 100%;
-  height: 50%;
+  height: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px;
   text-transform: capitalize;
   
+}
+
+
+@media screen and (max-width: 400px){
+     
+  .card_container{
+    width: 90%;
+    transition: none;
+
+    &:hover{
+      width: 90%;
+    }
+  }
+
+
+
 }

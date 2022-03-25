@@ -1,7 +1,7 @@
 @import './variables.scss';
 
 .maincard_container{
-  display: none;
+  display: flex;
   flex-direction: column;
   place-content: center;
   width: 70%;

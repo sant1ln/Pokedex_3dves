@@ -5,6 +5,7 @@ import { addPokemonInfo } from "../redux/actions/pokemonsAction";
 import pokemon_logo from "../public/pokemon_logo.png";
 import styles from "../styles/MainCard.module.scss";
 import Image from "next/image";
+import { setNewError } from "../redux/actions/errorActions";
 
 export const MainCard = ({ cardSelected }) => {
   const { id, image } = cardSelected;
@@ -32,7 +33,7 @@ export const MainCard = ({ cardSelected }) => {
       try {
         getPokemonData();
       } catch (error) {
-        console.log(error);
+        dispatch(setNewError(error));
       }
     }
   }, [cardSelected]);
@@ -54,7 +55,7 @@ export const MainCard = ({ cardSelected }) => {
     return (
       <div className={styles.maincard_container}>
         <div className={styles.image_container}>
-          <Image className={styles.image_default} src={pokemon_logo} />
+          <Image className={styles.image_default} src={pokemon_logo} priority/>
         </div>
         <div className={styles.info}>
           <p className={styles.name}>Seleciona un pokemon.</p>

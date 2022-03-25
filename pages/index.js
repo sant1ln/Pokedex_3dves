@@ -7,6 +7,7 @@ import { ListofCards } from '../components/ListofCards'
 import { MainCard } from '../components/MainCard'
 import {addBasicPokemonsInfo } from '../redux/actions/pokemonsAction'
 import styles from '../styles/Home.module.scss'
+import Head from 'next/head'
 
 export default function Home() {
 
@@ -25,7 +26,7 @@ export default function Home() {
     try {
       getAllPokemons();
     } catch {
-      console.error(error)
+      dispatch(setNewError(error));
     }
   }, [])
 
@@ -34,6 +35,11 @@ export default function Home() {
   }
 
   return (
+    <>
+    <Head>
+        <title>Pokedex</title>
+        <link rel="icon" href="/favicon.ico" />
+    </Head>
     <div className={styles.container}>
       <Header />
       <main className={styles.main}>
@@ -51,5 +57,6 @@ export default function Home() {
         </section>
       </main>
     </div>
+    </>
   )
 }
