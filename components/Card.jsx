@@ -1,35 +1,38 @@
 import axios from "axios"
 import Image from "next/image";
 import { useState,useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { addAllPokemonsInfo } from "../redux/actions/pokemonsAction";
 import styles from '../styles/Card.module.scss'
-
-export const Card = ({name,url}) => {
+/* front_default */
+export const Card = ({name,url,handleMainCardInfo}) => {
   const [pokemonData, setPokemonsData] = useState([]);
+  const dispatch = useDispatch()
+
 
   useEffect(()=>{
-    async function getPokemonData(){
-      const response = await axios.get(url)
-      const data = await response.data
-      const {name,id,sprites:{front_default}} = data
-      const pokemon =[ {name,id,front_default}]
-      setPokemonsData(pokemon)
+    function getPokemonData(){
+       axios.get(url)
+        .then((response)=>{
+          const {data} = response;
+          const {name,id,sprites:{front_default}} = data
+          dispatch(addAllPokemonsInfo({name,id,front_default}) )
+          setPokemonsData({name,id,front_default})
+        })      
     }
     try{ 
       getPokemonData()
-    }catch{
+    }catch(error){
       console.log(error)
     }
   },[])
-
-  console.log(pokemonData)
-
   return (
     
-    <div className={styles.card_container}>
+    <div className={styles.card_container} onClick={()=>handleMainCardInfo(pokemonData.id)}>
       <div className={styles.image_container}>
         <img 
           className={styles.image}
-          src={pokemonData[0]?.front_default}
+          src={pokemonData?.front_default}
         />
         
       </div>

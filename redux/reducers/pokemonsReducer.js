@@ -1,15 +1,35 @@
+import { actionTypes } from "../types";
 
 
-export const pokemonsReducers = (state,action) => {
+const initialState = {
+  basicPokemons : [],
+  pokemonsData: [],
+  pokemonSelected: []
+};
+
+export const pokemonsReducers = (state = initialState ,action) => {
   switch(action.type){
-    case 'some':
+    case actionTypes.ADD_BASIC_POKEMONS_INFO:
       return {
         ...state,
-        text: action.payload
+        basicPokemons: action.payload,
+      }
+    case actionTypes.ADD_ALL_POKEMON_DATA:
+      return {
+        ...state,
+        pokemonsData: [
+          ...state.pokemonsData,
+          action.payload
+        ]
+      }
+    case actionTypes.ADD_POKEMON_SELECTED:
+      return {
+        ...state,
+        pokemonSelected: action.payload
       }
     default:
       return {
-        state
+        ...state
       }
   }
 }
