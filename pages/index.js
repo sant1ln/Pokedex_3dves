@@ -1,17 +1,21 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { Card } from '../components/Card'
 import { Header } from '../components/Header'
 import { ListofCards } from '../components/ListofCards'
 import { MainCard } from '../components/MainCard'
 import { addPokemon } from '../redux/actions/pokemonsAction'
+import { getAllPokemons } from '../services/getPokemons'
 import styles from '../styles/Home.module.scss'
 
 export default function Home() {
 
-  const dispatch = useDispatch()
+  const [pokemons, setPokemons] = useState([])
 
-  useEffect(() => {
-    dispatch(addPokemon())
+  useEffect(async() => {
+    //dispatch(addPokemon())
+    let response =await getAllPokemons();
+    setPokemons(response)
   }, [])
 
   return (
@@ -19,10 +23,16 @@ export default function Home() {
       <Header />
       <main className={styles.main}>
         <section className={styles.list_cards}>
-          <ListofCards />
+          <ListofCards>
+            {
+              pokemons?.map(({name,url})=>(
+                <Card key={name} name={name} url={url} />
+              ))
+            }
+          </ListofCards>
         </section>
         <section className={styles.card}>
-          <MainCard/> 
+          <MainCard />
         </section>
       </main>
     </div>
