@@ -1,0 +1,25 @@
+@import './variables.scss';
+
+.container {
+  padding: 0;
+}
+
+.main {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: $background-color;
+  width: 100%;
+  min-height: 95vh;
+}
+
+.list_cards{
+  display: flex;
+  width: 65%;
+}
+
+.card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+}
