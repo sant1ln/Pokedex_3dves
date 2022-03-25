@@ -17,7 +17,7 @@ export default function Home() {
 
   useEffect(() => {
     async function getAllPokemons() {
-      const URL = 'https://pokeapi.co/api/v2/pokemon/'
+      const URL = 'https://pokeapi.co/api/v2/pokemon/?offset=150&limit=150'
       const response = await axios.get(URL);
       const data = await response.data;
       const pokemons = data.results;
