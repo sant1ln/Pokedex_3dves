@@ -10,7 +10,7 @@ import styles from '../styles/Home.module.scss'
 
 export default function Home() {
 
-  const [selectedCard,setSelectedCard] = useState(null)
+  const [selectedCard,setSelectedCard] = useState({})
   const { basicPokemons: pokemons } = useSelector(state => state.poke);
   const dispatch = useDispatch();
 
@@ -29,8 +29,8 @@ export default function Home() {
     }
   }, [])
 
-  const handleMainCardInfo = (id) =>{
-    setSelectedCard(id)
+  const handleMainCardInfo = (id,image) =>{
+    setSelectedCard({id,image})
   }
 
   return (
@@ -47,7 +47,7 @@ export default function Home() {
           </ListofCards>
         </section>
         <section className={styles.card}>
-          <MainCard cardSelected={selectedCard} />
+          <MainCard cardSelected={selectedCard}/>
         </section>
       </main>
     </div>

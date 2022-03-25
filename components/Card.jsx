@@ -15,7 +15,8 @@ export const Card = ({name,url,handleMainCardInfo}) => {
        axios.get(url)
         .then((response)=>{
           const {data} = response;
-          const {name,id,sprites:{front_default}} = data
+          const {name,id,sprites:{other}} = data
+          const {dream_world:{front_default}} = other;
           dispatch(addAllPokemonsInfo({name,id,front_default}) )
           setPokemonsData({name,id,front_default})
         })      
@@ -28,13 +29,12 @@ export const Card = ({name,url,handleMainCardInfo}) => {
   },[])
   return (
     
-    <div className={styles.card_container} onClick={()=>handleMainCardInfo(pokemonData.id)}>
+    <div className={styles.card_container} onClick={()=>handleMainCardInfo(pokemonData.id,pokemonData?.front_default)}>
       <div className={styles.image_container}>
         <img 
           className={styles.image}
           src={pokemonData?.front_default}
-        />
-        
+        />        
       </div>
       <div className={styles.info}>
         <p>{name}</p>
