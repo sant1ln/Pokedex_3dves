@@ -1,6 +1,6 @@
-@import './variables.scss';
+@import "./variables.scss";
 
-.maincard_container{
+.maincard_container {
   display: flex;
   flex-direction: column;
   place-content: center;
@@ -9,9 +9,29 @@
   background-color: $cards-color;
   border-radius: 10px;
   color: $font-color;
-} 
+}
 
-.image_container{
+.water {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(135, 135, 212, 1) 17%,
+    rgba(255, 255, 255, 1) 18%,
+    rgba(148, 149, 231, 1) 92%
+  );
+}
+
+.fire {
+  background: rgb(1, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(1, 0, 0, 1) 0%,
+    rgba(245, 28, 0, 1) 100%
+  );
+}
+
+.image_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,15 +39,16 @@
   height: 50%;
 }
 
-.image{
-  width: 70%;
+.image {
+  min-width: 30%;
+  max-width: 45%;
 }
 
-.image_default{
+.image_default {
   width: 100px;
 }
 
-.info{
+.info {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,14 +56,14 @@
   padding: 5px;
 }
 
-.name{
-  font-size: 2rem;  
+.name {
+  font-size: 2rem;
   text-transform: capitalize;
   font-weight: 300;
 }
 
-.other-info{
-  font-size: 1.9rem;  
+.other-info {
+  font-size: 1.9rem;
   text-transform: capitalize;
   font-weight: 300;
 }

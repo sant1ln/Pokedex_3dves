@@ -15,7 +15,9 @@
 }
 
 .card_container:hover{
-  width: 22%;
+  margin: 0;
+  width: 25%;
+  position: sticky;
   background-color: $cards-hover-color;
 }
 

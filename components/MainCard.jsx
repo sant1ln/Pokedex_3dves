@@ -6,6 +6,7 @@ import pokemon_logo from "../public/pokemon_logo.png";
 import styles from "../styles/MainCard.module.scss";
 import Image from "next/image";
 import { setNewError } from "../redux/actions/errorActions";
+import { getOnePokemon } from "../services/getOnePokemon";
 
 export const MainCard = ({ cardSelected }) => {
   const { id, image } = cardSelected;
@@ -15,26 +16,13 @@ export const MainCard = ({ cardSelected }) => {
 
   useEffect(() => {
     if (id) {
-      let url = `https://pokeapi.co/api/v2/pokemon/${id}/`;
-      function getPokemonData() {
-        axios.get(url).then((response) => {
-          const { data } = response;
-          const { name, types, height, weight } = data;
-          let mainCartData = {
-            type: types[0].type.name,
-            name,
-            height,
-            weight,
-            image,
-          };
-          dispatch(addPokemonInfo(mainCartData));
-        });
-      }
-      try {
-        getPokemonData();
-      } catch (error) {
-        dispatch(setNewError(error));
-      }
+    getOnePokemon(id,image)
+          .then((data)=>{
+            dispatch(addPokemonInfo(data));
+          })
+          .catch((error)=>{
+            console.error(error)
+          })      
     }
   }, [cardSelected]);
 
