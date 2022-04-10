@@ -21,7 +21,7 @@ export const MainCard = ({ cardSelected }) => {
             dispatch(addPokemonInfo(data));
           })
           .catch((error)=>{
-            console.error(error)
+            dispatch(setNewError(error))
           })      
     }
   }, [cardSelected]);
